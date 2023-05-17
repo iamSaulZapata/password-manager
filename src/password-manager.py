@@ -1,5 +1,9 @@
 # Personal Password Manager, DONOT USE OTHER THAN FOR LEARNING PYTHON
 
+import json
+
+PASSWORDS_FILE = "passwords.json"
+
 # Dictionary to store passwords
 passwords = {}
 
@@ -12,6 +16,7 @@ def add_pwd():
         "username": username,
         "password": pwd,
     }  # Add password to the dictionary
+    save_passwords()  # This will save pasewords to file
     print("Password added successfully!")
 
 
@@ -26,7 +31,22 @@ def get_pwd():
         print("Website not found!")
 
 
+def save_passwords():
+    with open(PASSWORDS_FILE, "w") as file:
+        json.dump(passwords, file)
+
+
+def load_passwords():
+    try:
+        with open(PASSWORDS_FILE, "r") as file:
+            passwords.update(json.load(file))
+    except FileNotFoundError:
+        pass
+
+
 def main():
+    load_passwords()  # Passwords loaded from file
+
     while True:
         print("\n--- Password Manager ---")
         print("1. Add password")
