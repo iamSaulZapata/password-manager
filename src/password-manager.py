@@ -1,32 +1,29 @@
-# Personal Password Manager, DONOT USE OTHER THAN FOR LEARNING PYTHON
-
 import json
 
 PASSWORDS_FILE = "passwords.json"
 
-# Dictionary to store passwords
-passwords = {}
+passwords = {}  # Dictionary to store passwords
 
 
-def add_pwd():
+def add_password():
     website = input("Enter website: ")
     username = input("Enter username: ")
-    pwd = input("Enter password: ")
+    password = input("Enter password: ")
     passwords[website] = {
         "username": username,
-        "password": pwd,
+        "password": password,
     }  # Add password to the dictionary
-    save_passwords()  # This will save pasewords to file
+    save_passwords()  # Save passwords to file
     print("Password added successfully!")
 
 
-def get_pwd():
+def get_password():
     website = input("Enter website: ")
     if website in passwords:  # Check if website exists in the dictionary
         username = passwords[website]["username"]
-        pwd = passwords[website]["password"]
+        password = passwords[website]["password"]
         print(f"Username: {username}")
-        print(f"Password: {pwd}")
+        print(f"Password: {password}")
     else:
         print("Website not found!")
 
@@ -45,7 +42,7 @@ def load_passwords():
 
 
 def main():
-    load_passwords()  # Passwords loaded from file
+    load_passwords()  # Load passwords from file
 
     while True:
         print("\n--- Password Manager ---")
@@ -55,9 +52,9 @@ def main():
         choice = input("Enter your choice (1-3): ")
 
         if choice == "1":
-            add_pwd()  # Call add_password function
+            add_password()  # Call add_password function
         elif choice == "2":
-            get_pwd()  # Call get_password function
+            get_password()  # Call get_password function
         elif choice == "3":
             print("Goodbye!")
             break
@@ -68,31 +65,3 @@ def main():
 # Start the password manager
 if __name__ == "__main__":
     main()
-
-
-# pwd = input("Enter the master password. ")
-
-# # functions
-
-
-# def view():
-#     pass
-
-
-# def add():
-#     pass
-
-
-# while True:
-#     mode = input(
-#         "Would you like to add a new password or view existing one (view, add), press q to quit?"
-#     ).lower()
-#     if mode == "q":
-#         break
-#     if mode == "view":
-#         pass
-#     elif mode == "add":
-#         pass
-#     else:
-#         print("Invalid mode")
-#         continue
